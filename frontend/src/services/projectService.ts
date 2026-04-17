@@ -1,6 +1,6 @@
 import type { Project } from "../types/project";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://aec-project-tracker.onrender.com";
 
 export const getProjects = async (): Promise<Project[]> => {
     const response = await fetch(`${API_BASE_URL}/api/projects`);
