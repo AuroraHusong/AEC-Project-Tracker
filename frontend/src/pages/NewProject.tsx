@@ -29,7 +29,7 @@ const NewProject = () => {
                 start_date: startDate,
                 end_date: endDate
             })
-            navigate("/projects")
+            navigate("/")
         } catch (err) {
             setError("Failed to create project")
         }finally{
