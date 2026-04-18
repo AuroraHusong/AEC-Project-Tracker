@@ -30,4 +30,14 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
+router.post('/', async (req: Request, res: Response): Promise<void> => {
+  try{
+    const [project] = await db("projects").insert(req.body).returning("*");
+    res.status(201).json(project);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "error creating project"})
+  }
+})
+
 export default router;

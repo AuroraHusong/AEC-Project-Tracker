@@ -17,4 +17,18 @@ export const getProjectById = async (id: number): Promise<Project> => {
     }
     const data: Project = await response.json();
     return data;
+};
+export const createProject = async (project: Omit<Project, "id">): Promise<Project> => {
+    const response = await fetch(`${API_BASE_URL}/api/projects`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(project),
+    });
+    if (!response.ok) {
+        throw new Error("Failed to create project");
+    }
+    const data: Project = await response.json();
+    return data
 }

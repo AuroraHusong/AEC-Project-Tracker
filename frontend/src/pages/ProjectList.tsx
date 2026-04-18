@@ -1,10 +1,11 @@
 import useProjects from "../hooks/useProjects";
 import ProjectCard from "../components/ProjectCard";
 import "./ProjectList.css";
+import { useNavigate } from "react-router-dom"
 
 const ProjectList = () => {
   const { projects, loading, error } = useProjects();
-
+  const navigate = useNavigate();
   if (loading) return <div className="state-message">Loading projects...</div>;
   if (error) return <div className="state-message error">{error}</div>;
 
@@ -15,7 +16,9 @@ const ProjectList = () => {
           <h1>Projects</h1>
           <p className="page-subtitle">Data-Driven Design</p>
         </div>
-        <button className="new-project-btn">+ New project</button>
+        <button className="new-project-btn" onClick={() => navigate("/projects/new")}>
+          + New project
+      </button>
       </div>
       <div className="stats-row">
         <div className="stat-card">
