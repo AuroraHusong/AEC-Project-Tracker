@@ -6,7 +6,9 @@
   "scripts": {
   "dev": "nodemon --watch src --ext ts --exec tsx src/server.ts",
   "build": "tsc",
-  "start": "node dist/server.js"
+  "start": "node dist/server.js",
+  "migrate": "tsx node_modules/knex/bin/cli.js migrate:latest --knexfile knexfile.ts",
+  "seed": "tsx node_modules/knex/bin/cli.js seed:run --knexfile knexfile.ts"
   },
   "keywords": [],
   "author": "",
