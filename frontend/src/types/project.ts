@@ -7,6 +7,6 @@ export interface Project {
   status: ProjectStatus;
   budget: number;
   spent: number;
-  startDate: string;
-  endDate: string;
+  start_date: string;
+  end_date: string;
 }
