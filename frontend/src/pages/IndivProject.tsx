@@ -70,12 +70,12 @@ const IndivProject = () => {
             <p className="section-title">Timeline</p>
             <div className="timeline-row">
             <div>
-                <p>{formatDate(project.startDate)}</p>
+                <p>{formatDate(project.start_date)}</p>
                 <p className="timeline-label">Start date</p>
             </div>
             <div className="timeline-line"></div>
             <div>
-                <p>{formatDate(project.endDate)}</p>
+                <p>{formatDate(project.end_date)}</p>
                 <p className="timeline-label">End date</p>
             </div>
             </div>
