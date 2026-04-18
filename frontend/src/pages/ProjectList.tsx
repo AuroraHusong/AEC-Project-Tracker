@@ -36,7 +36,7 @@ const ProjectList = () => {
               currency: "USD",
               notation: "compact",
               maximumFractionDigits: 1,
-            }).format(projects.reduce((sum, p) => sum + p.budget, 0))}
+            }).format(projects.reduce((sum, p) => sum + Number(p.budget), 0))}
           </span>
         </div>
       </div>

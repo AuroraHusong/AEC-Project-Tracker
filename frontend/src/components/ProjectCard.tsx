@@ -33,7 +33,9 @@ const formatCurrency = (amount: number): string => {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const navigate = useNavigate();
-  const { id, name, client, status, budget, spent, endDate } = project;
+  const { id, name, client, status, end_date } = project;
+  const budget = Number(project.budget);
+  const spent = Number(project.spent);
   const progressPercent = Math.round((spent / budget) * 100);
 
   return (
@@ -60,7 +62,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           }}
         />
       </div>
-      <p className="card-due">Due {new Date(endDate).toLocaleDateString("en-US", { month: "short", year: "numeric" })}</p>
+      <p className="card-due">Due {new Date(end_date).toLocaleDateString("en-US", { month: "short", year: "numeric" })}</p>
     </div>
   );
 };
