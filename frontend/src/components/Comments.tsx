@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Comment} from "../types/comment";
 import { getComments, createComment } from "../services/commentService";
-
+import "./Comments.css"
 
 interface CommentsProps {
     projectId: number;
