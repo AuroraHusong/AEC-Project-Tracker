@@ -119,7 +119,7 @@ const NewProject = () => {
             <button type="submit" disabled={submitting}>
             {submitting ? "Creating..." : "Create Project"}
             </button>
-            <button type="button" onClick={() => navigate("/projects")}>
+            <button type="button" onClick={() => navigate("/")}>
             Cancel
             </button>
         </div>

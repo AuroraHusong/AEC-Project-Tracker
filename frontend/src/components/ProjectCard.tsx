@@ -36,8 +36,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   const { id, name, client, status, end_date } = project;
   const budget = Number(project.budget);
   const spent = Number(project.spent);
-  const progressPercent = Math.round((spent / budget) * 100);
-
+  const actualPercent = (spent / budget) * 100;
+  const progressPercent = Math.min(Math.round(actualPercent), 100);
+  const isOverBudget = actualPercent > 100;
   return (
     <div className="project-card" onClick={() => navigate(`/projects/${id}`)}>
       <div className="card-header">
@@ -48,6 +49,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       </div>
       <p className="card-client">{client}</p>
       <div className="card-budget">
+        {isOverBudget && <span className="over-budget-label">Over budget</span>}
         <span className="budget-label">Budget used</span>
         <span className="budget-value">
           {formatCurrency(spent)} / {formatCurrency(budget)}

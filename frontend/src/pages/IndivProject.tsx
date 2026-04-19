@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import useSingleProject from "../hooks/useSingleProject";
 import type { ProjectStatus } from "../types/project";
 import "./IndivProject.css";
-
+import Comments from "../components/Comments"
 const getStatusBadgeClass = (status: ProjectStatus): string => {
   switch (status) {
     case "active":    return "badge-active";
@@ -80,7 +80,7 @@ const IndivProject = () => {
             </div>
             </div>
             </div>
-
+            <Comments projectId={project.id} />
         </div>
     )
 }   

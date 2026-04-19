@@ -60,6 +60,18 @@
   color: #ffffff;
   font-weight: 500;
 }
+.over-budget-label {
+  display: inline-block;
+  background: rgba(226, 75, 74, 0.15);
+  color: #E24B4A;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 0.5rem;
+}
 
 .progress-track {
   background: #333;
