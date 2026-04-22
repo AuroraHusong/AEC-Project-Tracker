@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import type { Comment} from "../types/comment";
-import { getComments, createComment } from "../services/commentService";
+import { getComments, createComment, deleteComment } from "../services/commentService";
 import "./Comments.css"
 
 interface CommentsProps {
@@ -48,6 +48,19 @@ const Comments = ({ projectId }: CommentsProps) => {
             setSubmitting(false);
         }
     }
+
+    const handleDelete = async (id: number) => {
+        const confirmed = window.confirm("Are you sure you want to delete")
+        if(!confirmed)return;
+        try{
+            await deleteComment(id);
+            setComments(comments.filter((one)=>{
+                one.id !== id
+            }))
+        } catch {
+            alert ('failed to delete')
+        }
+    }
     if (loading) return <div>Loading Comments...</div>
 
     return(
@@ -64,6 +77,12 @@ const Comments = ({ projectId }: CommentsProps) => {
                     <span className="comment-date">
                         {new Date(comment.created_at).toLocaleDateString()}
                     </span>
+                    <button
+                        className="comment-delete"
+                        onClick={() => handleDelete(comment.id)}
+                    >
+                        ×
+                    </button>
                     </div>
                     <p className="comment-body">{comment.body}</p>
                 </div>

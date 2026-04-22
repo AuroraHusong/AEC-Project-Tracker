@@ -40,4 +40,21 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
   }
 })
 
+router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const id = Number(req.params.id);
+    const deleted = await db("projects").where({ id }).del();
+
+    if (!deleted) {
+      res.status(404).json({ message: "Project not found" });
+      return;
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting" });
+  }
+})
+
 export default router;

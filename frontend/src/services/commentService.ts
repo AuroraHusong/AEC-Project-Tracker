@@ -21,3 +21,12 @@ export const createComment = async (comment: Omit <Comment, "id" | "created_at" 
     }
     return response.json();
 }
+
+export const deleteComment = async (id: number): Promise<void> => {
+    const response = await fetch(`${API_BASE_URL}/api/comments/${id}`, {
+        method: "DELETE",
+    })
+    if(!response.ok){
+        throw new Error("Failed to delete comment")
+    }
+}

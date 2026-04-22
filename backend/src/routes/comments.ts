@@ -24,6 +24,23 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
     console.error(error);
     res.status(500).json({ message: "Error creating comment" });
   }
+})
+
+router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const id = Number(req.params.id);
+    const deleted = await db("comments").where({ id }).del();
+
+    if (!deleted) {
+      res.status(404).json({ message: "Comment not found" });
+      return;
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting comment" });
+  }
 });
 
 export default router;

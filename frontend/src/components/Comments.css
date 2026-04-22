@@ -124,3 +124,22 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.comment-header {
+  position: relative;
+}
+
+.comment-delete {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  margin-left: auto;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.comment-delete:hover {
+  color: #E24B4A;
+}
