@@ -2,7 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import useSingleProject from "../hooks/useSingleProject";
 import type { ProjectStatus } from "../types/project";
 import "./IndivProject.css";
-import Comments from "../components/Comments"
+import Comments from "../components/Comments";
+import { deleteProject } from "../services/projectService";
+
 const getStatusBadgeClass = (status: ProjectStatus): string => {
   switch (status) {
     case "active":    return "badge-active";
@@ -34,6 +36,18 @@ const IndivProject = () => {
     const { id } = useParams()
     const { project, loading, error } = useSingleProject(id!)
 
+    const handleDelete = async () => {
+      if (!project) return
+      const confirmed = window.confirm("Are you sure you want to delete");
+      if(!confirmed)return;
+      try {
+        await deleteProject(project.id);
+        navigate("/")
+      } catch (err) {
+        alert("Failed to delete")
+      }
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
     if (!project) return <div>Project not found</div>;
@@ -50,8 +64,10 @@ const IndivProject = () => {
             <span className={`badge ${getStatusBadgeClass(project.status)}`}>
                 {project.status}
             </span>
+            <button className="delete-btn" onClick={handleDelete}>
+              Delete
+            </button>
             </div>
-
             <div className="stats-grid">
             <div className="stat">
                 <span className="stat-label">Total budget</span>
